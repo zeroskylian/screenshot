@@ -22,7 +22,7 @@ class ViewController: NSViewController {
     }
 
     @IBAction func buttonActin(_ sender: NSButton) {
-        
+        ScreenshotManager.shared.start()
     }
     
 }

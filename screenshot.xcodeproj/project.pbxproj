@@ -7,15 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5BB06CB627A9238900A7224B /* ScreenshotWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB06CB527A9238900A7224B /* ScreenshotWindowController.swift */; };
+		5BB06CBD27A92B4200A7224B /* ScreenshotWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB06CBC27A92B4200A7224B /* ScreenshotWindow.swift */; };
 		5BB841BF27A3FC0E0021B187 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB841BE27A3FC0E0021B187 /* AppDelegate.swift */; };
 		5BB841C127A3FC0E0021B187 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB841C027A3FC0E0021B187 /* ViewController.swift */; };
 		5BB841C327A3FC0F0021B187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BB841C227A3FC0F0021B187 /* Assets.xcassets */; };
 		5BB841C627A3FC0F0021B187 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BB841C427A3FC0F0021B187 /* Main.storyboard */; };
 		5BCECEBF27A3FDD400A54DFD /* ScreenshotManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCECEBE27A3FDD400A54DFD /* ScreenshotManager.swift */; };
 		5BCECEC127A3FE3400A54DFD /* ScreenshotManager+Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCECEC027A3FE3400A54DFD /* ScreenshotManager+Class.swift */; };
+		5BEF285927AE585F00FDAB51 /* MouseEventProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF285827AE585F00FDAB51 /* MouseEventProtocol.swift */; };
+		5BEF285B27AE59B400FDAB51 /* ScreenshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF285A27AE59B400FDAB51 /* ScreenshotView.swift */; };
+		5BEF285E27AE5A2D00FDAB51 /* NSColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF285D27AE5A2D00FDAB51 /* NSColorExtension.swift */; };
+		5BEF286027AE5B4700FDAB51 /* ScreenshotTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF285F27AE5B4700FDAB51 /* ScreenshotTextView.swift */; };
+		5BEF286227AE5B7300FDAB51 /* ScreenshotLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF286127AE5B7300FDAB51 /* ScreenshotLabelView.swift */; };
+		5BEF286427AE5EEE00FDAB51 /* ScreenshotDrawPathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF286327AE5EEE00FDAB51 /* ScreenshotDrawPathView.swift */; };
+		5BEF286627AE5FC500FDAB51 /* ScreenshotImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF286527AE5FC500FDAB51 /* ScreenshotImageButton.swift */; };
+		5BEF286A27AE6B4200FDAB51 /* ScreenshotUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF286927AE6B4200FDAB51 /* ScreenshotUtil.swift */; };
+		5BEF287127AE736900FDAB51 /* SnipUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BEF287027AE736900FDAB51 /* SnipUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5BB06CB527A9238900A7224B /* ScreenshotWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotWindowController.swift; sourceTree = "<group>"; };
+		5BB06CBC27A92B4200A7224B /* ScreenshotWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotWindow.swift; sourceTree = "<group>"; };
 		5BB841BB27A3FC0D0021B187 /* screenshot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = screenshot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BB841BE27A3FC0E0021B187 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BB841C027A3FC0E0021B187 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +37,17 @@
 		5BB841C727A3FC0F0021B187 /* screenshot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = screenshot.entitlements; sourceTree = "<group>"; };
 		5BCECEBE27A3FDD400A54DFD /* ScreenshotManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotManager.swift; sourceTree = "<group>"; };
 		5BCECEC027A3FE3400A54DFD /* ScreenshotManager+Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenshotManager+Class.swift"; sourceTree = "<group>"; };
+		5BEF285827AE585F00FDAB51 /* MouseEventProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseEventProtocol.swift; sourceTree = "<group>"; };
+		5BEF285A27AE59B400FDAB51 /* ScreenshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotView.swift; sourceTree = "<group>"; };
+		5BEF285D27AE5A2D00FDAB51 /* NSColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColorExtension.swift; sourceTree = "<group>"; };
+		5BEF285F27AE5B4700FDAB51 /* ScreenshotTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTextView.swift; sourceTree = "<group>"; };
+		5BEF286127AE5B7300FDAB51 /* ScreenshotLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotLabelView.swift; sourceTree = "<group>"; };
+		5BEF286327AE5EEE00FDAB51 /* ScreenshotDrawPathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotDrawPathView.swift; sourceTree = "<group>"; };
+		5BEF286527AE5FC500FDAB51 /* ScreenshotImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotImageButton.swift; sourceTree = "<group>"; };
+		5BEF286927AE6B4200FDAB51 /* ScreenshotUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotUtil.swift; sourceTree = "<group>"; };
+		5BEF286E27AE736900FDAB51 /* screenshot-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "screenshot-Bridging-Header.h"; sourceTree = "<group>"; };
+		5BEF286F27AE736900FDAB51 /* SnipUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnipUtil.h; sourceTree = "<group>"; };
+		5BEF287027AE736900FDAB51 /* SnipUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnipUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +80,8 @@
 		5BB841BD27A3FC0D0021B187 /* screenshot */ = {
 			isa = PBXGroup;
 			children = (
+				5BEF286B27AE734200FDAB51 /* ObjectiveC */,
+				5BEF285C27AE5A0D00FDAB51 /* Extension */,
 				5BCECEBD27A3FCFF00A54DFD /* Core */,
 				5BB841BE27A3FC0E0021B187 /* AppDelegate.swift */,
 				5BB841C027A3FC0E0021B187 /* ViewController.swift */,
@@ -71,8 +97,35 @@
 			children = (
 				5BCECEBE27A3FDD400A54DFD /* ScreenshotManager.swift */,
 				5BCECEC027A3FE3400A54DFD /* ScreenshotManager+Class.swift */,
+				5BEF286927AE6B4200FDAB51 /* ScreenshotUtil.swift */,
+				5BB06CB527A9238900A7224B /* ScreenshotWindowController.swift */,
+				5BB06CBC27A92B4200A7224B /* ScreenshotWindow.swift */,
+				5BEF285827AE585F00FDAB51 /* MouseEventProtocol.swift */,
+				5BEF285A27AE59B400FDAB51 /* ScreenshotView.swift */,
+				5BEF286527AE5FC500FDAB51 /* ScreenshotImageButton.swift */,
+				5BEF286327AE5EEE00FDAB51 /* ScreenshotDrawPathView.swift */,
+				5BEF286127AE5B7300FDAB51 /* ScreenshotLabelView.swift */,
+				5BEF285F27AE5B4700FDAB51 /* ScreenshotTextView.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		5BEF285C27AE5A0D00FDAB51 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5BEF285D27AE5A2D00FDAB51 /* NSColorExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		5BEF286B27AE734200FDAB51 /* ObjectiveC */ = {
+			isa = PBXGroup;
+			children = (
+				5BEF286F27AE736900FDAB51 /* SnipUtil.h */,
+				5BEF287027AE736900FDAB51 /* SnipUtil.m */,
+				5BEF286E27AE736900FDAB51 /* screenshot-Bridging-Header.h */,
+			);
+			path = ObjectiveC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,6 +161,7 @@
 				TargetAttributes = {
 					5BB841BA27A3FC0D0021B187 = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 				};
 			};
@@ -167,10 +221,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BEF287127AE736900FDAB51 /* SnipUtil.m in Sources */,
+				5BEF285B27AE59B400FDAB51 /* ScreenshotView.swift in Sources */,
 				5BB841C127A3FC0E0021B187 /* ViewController.swift in Sources */,
 				5BB841BF27A3FC0E0021B187 /* AppDelegate.swift in Sources */,
+				5BB06CB627A9238900A7224B /* ScreenshotWindowController.swift in Sources */,
+				5BEF285927AE585F00FDAB51 /* MouseEventProtocol.swift in Sources */,
+				5BEF286627AE5FC500FDAB51 /* ScreenshotImageButton.swift in Sources */,
+				5BEF285E27AE5A2D00FDAB51 /* NSColorExtension.swift in Sources */,
+				5BEF286A27AE6B4200FDAB51 /* ScreenshotUtil.swift in Sources */,
 				5BCECEC127A3FE3400A54DFD /* ScreenshotManager+Class.swift in Sources */,
+				5BEF286427AE5EEE00FDAB51 /* ScreenshotDrawPathView.swift in Sources */,
 				5BCECEBF27A3FDD400A54DFD /* ScreenshotManager.swift in Sources */,
+				5BB06CBD27A92B4200A7224B /* ScreenshotWindow.swift in Sources */,
+				5BEF286027AE5B4700FDAB51 /* ScreenshotTextView.swift in Sources */,
+				5BEF286227AE5B7300FDAB51 /* ScreenshotLabelView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +373,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = screenshot/screenshot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -326,6 +392,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zeros.lian.screenshot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "screenshot/ObjectiveC/screenshot-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -335,6 +403,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = screenshot/screenshot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -353,6 +422,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zeros.lian.screenshot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "screenshot/ObjectiveC/screenshot-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
