@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5BB06CB627A9238900A7224B /* ScreenshotWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB06CB527A9238900A7224B /* ScreenshotWindowController.swift */; };
 		5BB06CBD27A92B4200A7224B /* ScreenshotWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB06CBC27A92B4200A7224B /* ScreenshotWindow.swift */; };
 		5BB841BF27A3FC0E0021B187 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB841BE27A3FC0E0021B187 /* AppDelegate.swift */; };
 		5BB841C127A3FC0E0021B187 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB841C027A3FC0E0021B187 /* ViewController.swift */; };
@@ -38,11 +37,13 @@
 		634A1AA627B3A7A600C2B957 /* ScreenCapture_toolbar_mosaic_effect.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 634A1A9827B3A7A600C2B957 /* ScreenCapture_toolbar_mosaic_effect.tiff */; };
 		634A1AA727B3A7A600C2B957 /* ScreenCapture_toolbar_rect_ineffect.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 634A1A9927B3A7A600C2B957 /* ScreenCapture_toolbar_rect_ineffect.tiff */; };
 		634A1AA827B3A7A600C2B957 /* ScreenCapture_toolbar_mosaic_ineffect.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 634A1A9A27B3A7A600C2B957 /* ScreenCapture_toolbar_mosaic_ineffect.tiff */; };
+		634A1AAB27B3B62500C2B957 /* ScreenshotWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634A1AA927B3B62500C2B957 /* ScreenshotWindowController.swift */; };
+		634A1AAC27B3B62500C2B957 /* ScreenshotWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 634A1AAA27B3B62500C2B957 /* ScreenshotWindowController.xib */; };
+		634A1AAE27B3BA5700C2B957 /* OptionalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634A1AAD27B3BA5700C2B957 /* OptionalExtension.swift */; };
 		634EF66327B3A4EE00ACC561 /* ScreenshotToolBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634EF66227B3A4EE00ACC561 /* ScreenshotToolBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5BB06CB527A9238900A7224B /* ScreenshotWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotWindowController.swift; sourceTree = "<group>"; };
 		5BB06CBC27A92B4200A7224B /* ScreenshotWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotWindow.swift; sourceTree = "<group>"; };
 		5BB841BB27A3FC0D0021B187 /* screenshot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = screenshot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BB841BE27A3FC0E0021B187 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +78,9 @@
 		634A1A9827B3A7A600C2B957 /* ScreenCapture_toolbar_mosaic_effect.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = ScreenCapture_toolbar_mosaic_effect.tiff; sourceTree = "<group>"; };
 		634A1A9927B3A7A600C2B957 /* ScreenCapture_toolbar_rect_ineffect.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = ScreenCapture_toolbar_rect_ineffect.tiff; sourceTree = "<group>"; };
 		634A1A9A27B3A7A600C2B957 /* ScreenCapture_toolbar_mosaic_ineffect.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = ScreenCapture_toolbar_mosaic_ineffect.tiff; sourceTree = "<group>"; };
+		634A1AA927B3B62500C2B957 /* ScreenshotWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotWindowController.swift; sourceTree = "<group>"; };
+		634A1AAA27B3B62500C2B957 /* ScreenshotWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenshotWindowController.xib; sourceTree = "<group>"; };
+		634A1AAD27B3BA5700C2B957 /* OptionalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalExtension.swift; sourceTree = "<group>"; };
 		634EF66227B3A4EE00ACC561 /* ScreenshotToolBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotToolBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,7 +133,8 @@
 				5BEF285C27AE5A0D00FDAB51 /* Extension */,
 				5BCECEBE27A3FDD400A54DFD /* ScreenshotManager.swift */,
 				5BCECEC027A3FE3400A54DFD /* ScreenshotManager+Class.swift */,
-				5BB06CB527A9238900A7224B /* ScreenshotWindowController.swift */,
+				634A1AA927B3B62500C2B957 /* ScreenshotWindowController.swift */,
+				634A1AAA27B3B62500C2B957 /* ScreenshotWindowController.xib */,
 				5BB06CBC27A92B4200A7224B /* ScreenshotWindow.swift */,
 				5BEF285A27AE59B400FDAB51 /* ScreenshotView.swift */,
 				634EF66227B3A4EE00ACC561 /* ScreenshotToolBox.swift */,
@@ -146,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				5BEF285D27AE5A2D00FDAB51 /* NSColorExtension.swift */,
+				634A1AAD27B3BA5700C2B957 /* OptionalExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -260,6 +266,7 @@
 				634A1AA027B3A7A600C2B957 /* ScreenCapture_toolbar_arrow_ineffect.tiff in Resources */,
 				634A1AA527B3A7A600C2B957 /* ScreenCapture_toolbar_cross_normal.tiff in Resources */,
 				634A1A9D27B3A7A600C2B957 /* ScreenCapture_toolbar_text_ineffect.tiff in Resources */,
+				634A1AAC27B3B62500C2B957 /* ScreenshotWindowController.xib in Resources */,
 				5BB841C627A3FC0F0021B187 /* Main.storyboard in Resources */,
 				634A1A9F27B3A7A600C2B957 /* ScreenCapture_toolbar_ellipse_effect.tiff in Resources */,
 				634A1AA427B3A7A600C2B957 /* ScreenCapture_toolbar_arrow_effect.tiff in Resources */,
@@ -300,16 +307,17 @@
 				5BEF285B27AE59B400FDAB51 /* ScreenshotView.swift in Sources */,
 				5BB841C127A3FC0E0021B187 /* ViewController.swift in Sources */,
 				5BB841BF27A3FC0E0021B187 /* AppDelegate.swift in Sources */,
-				5BB06CB627A9238900A7224B /* ScreenshotWindowController.swift in Sources */,
 				5BEF285927AE585F00FDAB51 /* MouseEventProtocol.swift in Sources */,
 				5BEF286627AE5FC500FDAB51 /* ScreenshotImageButton.swift in Sources */,
 				634EF66327B3A4EE00ACC561 /* ScreenshotToolBox.swift in Sources */,
 				5BEF285E27AE5A2D00FDAB51 /* NSColorExtension.swift in Sources */,
 				5BEF286A27AE6B4200FDAB51 /* ScreenshotUtil.swift in Sources */,
 				5BCECEC127A3FE3400A54DFD /* ScreenshotManager+Class.swift in Sources */,
+				634A1AAB27B3B62500C2B957 /* ScreenshotWindowController.swift in Sources */,
 				5BEF286427AE5EEE00FDAB51 /* ScreenshotDrawPathView.swift in Sources */,
 				5BCECEBF27A3FDD400A54DFD /* ScreenshotManager.swift in Sources */,
 				5BB06CBD27A92B4200A7224B /* ScreenshotWindow.swift in Sources */,
+				634A1AAE27B3BA5700C2B957 /* OptionalExtension.swift in Sources */,
 				5BEF286027AE5B4700FDAB51 /* ScreenshotTextView.swift in Sources */,
 				5BEF286227AE5B7300FDAB51 /* ScreenshotLabelView.swift in Sources */,
 			);

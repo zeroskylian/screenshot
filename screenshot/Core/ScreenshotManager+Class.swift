@@ -15,6 +15,7 @@ extension ScreenshotManager {
         case highlight
         case firstMouseDown
         case readyAdjust
+        case adjust
         case edit
         case done
     }
@@ -30,7 +31,7 @@ extension ScreenshotManager {
     
     struct Constant {
         static let borderLineWidth: Double = 2
-        static let borLineColor: Int = 0x1191FE
+        static let borderLineColor: Int = 0x1191FE
         static let keyEscCode: Int = 53
     }
     
