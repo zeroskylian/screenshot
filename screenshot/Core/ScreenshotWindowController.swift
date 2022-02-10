@@ -50,8 +50,7 @@ class ScreenshotWindowController: NSWindowController {
     }
     
     func doScreenshot(screen: NSScreen) {
-        #warning("Unmanaged")
-        guard let imgRef = SnipUtil.screenShot(screen)?.takeUnretainedValue() else { return }
+        guard let imgRef = SnipUtil.screenShot(screen)?.takeRetainedValue() else { return }
         let mainFrame = screen.frame
         originImage = NSImage(cgImage: imgRef, size: mainFrame.size)
         darkImage = NSImage(cgImage: imgRef, size: mainFrame.size)
@@ -252,7 +251,6 @@ class ScreenshotWindowController: NSWindowController {
     }
     
     override func mouseDown(with event: NSEvent) {
-        print(#function)
         let captureState = ScreenshotManager.shared.captureState
         if event.clickCount == 2 {
             if captureState != .highlight {
@@ -352,12 +350,12 @@ class ScreenshotWindowController: NSWindowController {
                     snipView?.pathView?.currentInfo = ScreenshotManager.DrawPathInfo(draw: ScreenshotManager.shared.draw, startPoint: .zero, endPoint: .zero, points: linePoints, editText: nil)
                 } else {
                     let info = ScreenshotManager.DrawPathInfo(draw: ScreenshotManager.shared.draw, startPoint: rectBeginPoint, endPoint: rectEndPoint, points: nil, editText: nil)
-                    snipView?.pathView?.rectArray.append(info)
+                    snipView?.pathView?.currentInfo = info
                 }
                 snipView?.pathView?.needsDisplay = true
             }
         } else if captureState == .adjust {
-            guard dragDirection != -1 else { return }
+            guard dragDirection != -1, let window = window else { return }
             let mouseLocation = NSEvent.mouseLocation
             endPoint = mouseLocation
             let deltaX = endPoint.x - startPoint.x
@@ -366,8 +364,8 @@ class ScreenshotWindowController: NSWindowController {
             switch dragDirection {
             case 8:
                 rect = rect.offsetBy(dx: deltaX, dy: deltaY)
-                if window?.frame.contains(rect) == false {
-                    let rcOrigin = window?.frame ?? .zero
+                if !window.frame.contains(rect) {
+                    let rcOrigin = window.frame
                     rect.origin.x = max(rect.origin.x, rcOrigin.origin.x)
                     rect.origin.y = max(rect.origin.y, rcOrigin.origin.y)
                     rect.origin.x = min(rect.origin.x, rcOrigin.origin.x + rcOrigin.width - rect.width)

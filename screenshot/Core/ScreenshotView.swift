@@ -149,7 +149,6 @@ class ScreenshotView: NSView {
             rectPath.removeAllPoints()
             rectPath.appendRect(imageRect)
             rectPath.stroke()
-            
             if ScreenshotManager.shared.captureState == .adjust {
                 NSColor.white.set()
                 for i in 0 ..< Self.dragPointNum {
@@ -164,5 +163,9 @@ class ScreenshotView: NSView {
             showToolkit()
         }
         NSEnableScreenUpdates()
+    }
+    
+    deinit {
+        print("ScreenshotView === deinit")
     }
 }
