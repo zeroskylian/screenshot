@@ -27,7 +27,7 @@ class ScreenshotWindowController: NSWindowController {
     
     private var endPoint: CGPoint = .zero
     
-    private var dragDirection = 0
+    private var dragDirection: Int = 0
     
     private var rectBeginPoint: CGPoint = .zero
     
@@ -50,6 +50,7 @@ class ScreenshotWindowController: NSWindowController {
     }
     
     func doScreenshot(screen: NSScreen) {
+        #warning("Unmanaged")
         guard let imgRef = SnipUtil.screenShot(screen)?.takeUnretainedValue() else { return }
         let mainFrame = screen.frame
         originImage = NSImage(cgImage: imgRef, size: mainFrame.size)
@@ -72,7 +73,7 @@ class ScreenshotWindowController: NSWindowController {
                 let windowRect = dir[kCGWindowBounds as String]
                 let cgrect = try CGRect(dictionaryRepresentation: windowRect.unwrap() as! CFDictionary)
                 let rect = try ScreenshotUtil.cgWindowRectToScreenRect(windowRect: cgrect.unwrap())
-                guard let layer = dir[kCGWindowLayer as String] as? Int else { continue}
+                guard let layer = dir[kCGWindowLayer as String] as? Int else { continue }
                 guard layer >= 0 else { continue }
                 if ScreenshotUtil.point(point: mouseLocation, inRect: rect) {
                     if layer == 0 {
@@ -110,9 +111,7 @@ class ScreenshotWindowController: NSWindowController {
             && Int(lastRect.height) == Int(captureWindowRect.height) {
             return
         }
-        if snipView?.image == nil && image == nil {
-            return
-        }
+        if snipView?.image == nil && image == nil { return }
         DispatchQueue.main.async {
             self.snipView?.image = image
             let rect = window.convertFromScreen(self.captureWindowRect)
@@ -188,6 +187,7 @@ class ScreenshotWindowController: NSWindowController {
     func setupToolClick() {
         snipView?.toolBox.actionClick = { [weak self] action in
             guard let `self` = self else { return }
+            self.endEditText()
             switch action {
             case .shapeRect:
                 ScreenshotManager.shared.draw = .rect
@@ -225,16 +225,16 @@ class ScreenshotWindowController: NSWindowController {
     func startCapture(screen: NSScreen) {
         guard let window = window else { return }
         doScreenshot(screen: screen)
-        guard let darkImage = darkImage else  { return }
+        guard let darkImage = darkImage else { return }
         window.backgroundColor = NSColor(patternImage: darkImage)
         var screenFrame = screen.frame
-        screenFrame.size.width /= 1
-        screenFrame.size.height /= 1
+        screenFrame.size.width = CGFloat(Int(screenFrame.width))
+        screenFrame.size.height = CGFloat(Int(screenFrame.height))
         window.setFrame(screenFrame, display: true, animate: false)
         snipView = window.contentView as? ScreenshotView
         (window as? ScreenshotWindow)?.mouseDelegate = self
         self.snipView?.setupTrackingArea(rect: window.screen?.frame ?? .zero)
-        NotificationCenter.default.addObserver(self, selector: #selector(onNotifyMouseChange(noti: )), name: .kNotifyMouseLocationChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onNotifyMouseChange(noti:)), name: .kNotifyMouseLocationChange, object: nil)
         showWindow(nil)
         captureAppScreen()
     }
@@ -242,7 +242,7 @@ class ScreenshotWindowController: NSWindowController {
     @objc private func onNotifyMouseChange(noti: Notification) {
         if let manager = noti.userInfo?["content"] as? ScreenshotManager, manager === self { return }
         guard let window = window, let screen = window.screen else { return }
-        if ScreenshotManager.shared.captureState == .highlight && window.isVisible == true && ScreenshotUtil.point(point: NSEvent.mouseLocation, inRect: screen.frame) {
+        if ScreenshotManager.shared.captureState == .highlight && window.isVisible && ScreenshotUtil.point(point: NSEvent.mouseLocation, inRect: screen.frame) {
             DispatchQueue.main.async { [weak self] in
                 guard let `self` = self else { return }
                 self.showWindow(nil)
@@ -252,7 +252,6 @@ class ScreenshotWindowController: NSWindowController {
     }
     
     override func mouseDown(with event: NSEvent) {
-//        super.mouseDown(with: event)
         let captureState = ScreenshotManager.shared.captureState
         if event.clickCount == 2 {
             if captureState != .highlight {
@@ -307,6 +306,7 @@ class ScreenshotWindowController: NSWindowController {
     }
     
     override func mouseUp(with event: NSEvent) {
+        guard let window = window else { return }
         let captureState = ScreenshotManager.shared.captureState
         if captureState == .firstMouseDown || captureState == .readyAdjust {
             ScreenshotManager.shared.captureState = .adjust
@@ -318,19 +318,18 @@ class ScreenshotWindowController: NSWindowController {
             snipView?.hideTip()
             snipView?.needsDisplay = true
         } else {
-            if rectDrawing {
-                rectDrawing = false
-                rectEndPoint = NSEvent.mouseLocation
-                if ScreenshotManager.shared.draw == .point {
-                    let info = ScreenshotManager.DrawPathInfo(draw: ScreenshotManager.shared.draw, startPoint: .zero, endPoint: .zero, points: linePoints, editText: nil)
-                    snipView?.pathView?.rectArray.append(info)
-                } else {
-                    let info = ScreenshotManager.DrawPathInfo(draw: ScreenshotManager.shared.draw, startPoint: rectBeginPoint, endPoint: rectEndPoint, points: nil, editText: nil)
-                    snipView?.pathView?.rectArray.append(info)
-                }
-                let rect = window?.convertFromScreen(captureWindowRect) ?? .zero
-                snipView?.setNeedsDisplay(rect)
+            guard rectDrawing else { return }
+            rectDrawing = false
+            rectEndPoint = NSEvent.mouseLocation
+            if ScreenshotManager.shared.draw == .point {
+                let info = ScreenshotManager.DrawPathInfo(draw: ScreenshotManager.shared.draw, startPoint: .zero, endPoint: .zero, points: linePoints, editText: nil)
+                snipView?.pathView?.rectArray.append(info)
+            } else {
+                let info = ScreenshotManager.DrawPathInfo(draw: ScreenshotManager.shared.draw, startPoint: rectBeginPoint, endPoint: rectEndPoint, points: nil, editText: nil)
+                snipView?.pathView?.rectArray.append(info)
             }
+            let rect = window.convertFromScreen(captureWindowRect)
+            snipView?.setNeedsDisplay(rect)
         }
     }
     
@@ -354,11 +353,10 @@ class ScreenshotWindowController: NSWindowController {
                     let info = ScreenshotManager.DrawPathInfo(draw: ScreenshotManager.shared.draw, startPoint: rectBeginPoint, endPoint: rectEndPoint, points: nil, editText: nil)
                     snipView?.pathView?.rectArray.append(info)
                 }
+                snipView?.pathView?.needsDisplay = true
             }
         } else if captureState == .adjust {
-            if dragDirection == -1 {
-                return
-            }
+            guard dragDirection != -1 else { return }
             let mouseLocation = NSEvent.mouseLocation
             endPoint = mouseLocation
             let deltaX = endPoint.x - startPoint.x
