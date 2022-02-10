@@ -13,10 +13,6 @@ class ScreenshotDrawPathView: NSView {
     
     var currentInfo: ScreenshotManager.DrawPathInfo?
     
-    deinit {
-        print("ScreenshotDrawPathView === deinit")
-    }
-    
     private func rectFromScreen(rect: CGRect) -> CGRect {
         guard let window = self.window else { return rect }
         var rectRet = window.convertFromScreen(rect)

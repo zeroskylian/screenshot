@@ -12,7 +12,7 @@ class ScreenshotWindow: NSPanel {
     weak var mouseDelegate: MouseEventProtocol?
     
     override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
-        super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
+        super.init(contentRect: contentRect, styleMask: style, backing: .buffered, defer: false)
         acceptsMouseMovedEvents = true
         isFloatingPanel = true
         collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
@@ -24,7 +24,7 @@ class ScreenshotWindow: NSPanel {
         hidesOnDeactivate = false
         isRestorable = false
         disableSnapshotRestoration()
-        level = .init(rawValue: Int(CGWindowLevelKey.maximumWindow.rawValue))
+        level = .init(rawValue: Int(CGWindowLevelForKey(.maximumWindow)))
         isMovable = false
     }
     

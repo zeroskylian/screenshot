@@ -164,8 +164,4 @@ class ScreenshotView: NSView {
         }
         NSEnableScreenUpdates()
     }
-    
-    deinit {
-        print("ScreenshotView === deinit")
-    }
 }
