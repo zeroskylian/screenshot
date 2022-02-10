@@ -50,7 +50,6 @@ extension ScreenshotManager {
         let points: [CGPoint]?
         let editText: String?
         
-        #warning("存疑")
         init(draw: Draw, startPoint: CGPoint = .zero, endPoint: CGPoint = .zero, points: [CGPoint]?, editText: String?) {
             self.draw = draw
             self.startPoint = startPoint

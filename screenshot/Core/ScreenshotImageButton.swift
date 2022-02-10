@@ -9,7 +9,7 @@ import AppKit
  
 class ScreenshotImageButton: NSImageView {
     override func mouseDown(with event: NSEvent) {
-        guard let action = self.action else { return super.mouseDown(with: event) }
+        guard let action = self.action else { return }
         NSApp.sendAction(action, to: target, from: self)
     }
 }

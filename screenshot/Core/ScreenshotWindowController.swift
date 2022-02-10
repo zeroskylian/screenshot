@@ -72,7 +72,7 @@ class ScreenshotWindowController: NSWindowController {
                 let windowRect = dir[kCGWindowBounds as String]
                 let cgrect = try CGRect(dictionaryRepresentation: windowRect.unwrap() as! CFDictionary)
                 let rect = try ScreenshotUtil.cgWindowRectToScreenRect(windowRect: cgrect.unwrap())
-                guard let layer = dir[kCGWindowLayer as String] as? Int else { continue }
+                let layer = (dir[kCGWindowLayer as String] as? Int) ?? 0
                 guard layer >= 0 else { continue }
                 if ScreenshotUtil.point(point: mouseLocation, inRect: rect) {
                     if layer == 0 {
