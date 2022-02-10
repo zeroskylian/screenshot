@@ -21,8 +21,6 @@
         }
     }
     rect = NSMakeRect(rect.origin.x, (mainRect.size.height) - (rect.origin.y + rect.size.height), rect.size.width, rect.size.height);
-
-    NSLog(@"screenShot: %@", NSStringFromRect(rect));
     CGImageRef imgRef = CGWindowListCreateImageFromArray(rect, windowsRef, kCGWindowImageDefault);
     CFRelease(windowsRef);
     return imgRef;

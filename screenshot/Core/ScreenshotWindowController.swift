@@ -293,6 +293,7 @@ class ScreenshotWindowController: NSWindowController {
                     editTextView?.layer?.borderWidth = 0.5
                     editTextView?.font = ScreenshotManager.shared.configure.font
                     editTextView?.insertionPointColor = .red
+                    editTextView?.textColor = ScreenshotManager.shared.configure.textColor
                     editTextView?.textContainerInset = .zero
                     snipView?.addSubview(editTextView!)
                     editTextView?.frame = CGRect(x: mouseLocation.x, y: mouseLocation.y - 12, width: 120, height: 24)
@@ -419,16 +420,17 @@ class ScreenshotWindowController: NSWindowController {
     }
     
     private func endEditText() {
-        if ScreenshotManager.shared.draw == .text {
-            if editTextView?.superview != nil {
-                editTextView?.removeFromSuperview()
+        if ScreenshotManager.shared.draw == .text, let window = window {
+            if let editTextView = editTextView, editTextView.superview != nil {
+                editTextView.removeFromSuperview()
                 rectDrawing = false
-                let editTextFrame = self.editTextView?.frame ?? .zero
-                rectEndPoint = CGPoint(x: self.rectBeginPoint.x + editTextFrame.size.width, y: self.rectBeginPoint.y - editTextFrame.size.height)
-                let info = ScreenshotManager.DrawPathInfo(draw: ScreenshotManager.shared.draw, startPoint: rectBeginPoint, endPoint: rectEndPoint, points: nil, editText: editTextView?.string)
+                rectEndPoint = CGPoint(x: self.rectBeginPoint.x + editTextView.frame.size.width, y: self.rectBeginPoint.y - editTextView.frame.size.height)
+                let info = ScreenshotManager.DrawPathInfo(draw: ScreenshotManager.shared.draw, startPoint: rectBeginPoint, endPoint: rectEndPoint, points: nil, editText: editTextView.string)
                 snipView?.pathView?.rectArray.append(info)
-                let rect = window?.convertFromScreen(captureWindowRect)
-                snipView?.setNeedsDisplay(rect ?? .zero)
+                let rect = window.convertFromScreen(captureWindowRect)
+                snipView?.setNeedsDisplay(rect)
+                snipView?.pathView?.needsDisplay = true
+                return
             }
         }
     }
