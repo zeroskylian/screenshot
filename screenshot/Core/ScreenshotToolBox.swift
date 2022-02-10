@@ -9,7 +9,7 @@ import AppKit
 
 class ScreenshotToolBox: NSView {
     
-    lazy var buttons: [ScreenshotImageButton] = Action.allCases.map { action in
+    lazy var buttons: [ScreenshotImageButton] = [.shapeRect, .shapeEllipse, .shapeArrow, .editPen, .editText, .cancel, .sure].map { action in
         return createImageButton(action: action)
     }
     
@@ -19,7 +19,8 @@ class ScreenshotToolBox: NSView {
         super.init(frame: frameRect)
         
         let stackView = NSStackView(views: buttons)
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillEqually
+        stackView.edgeInsets = NSEdgeInsets(top: 0, left: 7, bottom: 0, right: 7)
         stackView.spacing = 7
         addSubview(stackView)
     }
@@ -40,6 +41,8 @@ class ScreenshotToolBox: NSView {
         let button = ScreenshotImageButton()
         button.image = action.image
         button.tag = action.rawValue
+        button.target = self
+        button.action = #selector(onClickAction(sender:))
         return button
     }
     
@@ -52,6 +55,10 @@ class ScreenshotToolBox: NSView {
         guard let action = Action(rawValue: sender.tag) else { return }
         sender.image = action.selectImage
         actionClick?(action)
+    }
+    
+    override func mouseDown(with event: NSEvent) {
+        
     }
 }
 

@@ -185,7 +185,7 @@ class ScreenshotWindowController: NSWindowController {
     }
     
     func setupToolClick() {
-        snipView?.toolBox.actionClick = { [weak self] action in
+        snipView?.toolBox?.actionClick = { [weak self] action in
             guard let `self` = self else { return }
             self.endEditText()
             switch action {
@@ -252,6 +252,7 @@ class ScreenshotWindowController: NSWindowController {
     }
     
     override func mouseDown(with event: NSEvent) {
+        print(#function)
         let captureState = ScreenshotManager.shared.captureState
         if event.clickCount == 2 {
             if captureState != .highlight {
