@@ -9,8 +9,8 @@ import AppKit
 
 class ScreenshotView: NSView {
     
-    private static let pointNum = 8
-    private static let pointLen: CGFloat = 5
+    private static let dragPointNum = 8
+    private static let dragPointLen: CGFloat = 5
     
     var image: NSImage?
     
@@ -20,12 +20,9 @@ class ScreenshotView: NSView {
     
     var trackingArea: NSTrackingArea?
     
-    lazy var toolBox: ScreenshotToolBox = ScreenshotToolBox()
+    var toolBox: ScreenshotToolBox?
     
-    private lazy var tipView: ScreenshotLabelView = {
-        let tipView = ScreenshotLabelView()
-        return  tipView
-    }()
+    private var tipView: ScreenshotLabelView?
     
     func setupTrackingArea(rect: CGRect) {
         trackingArea = NSTrackingArea(rect: rect, options: [.mouseMoved, .activeAlways], owner: self, userInfo: nil)
@@ -33,10 +30,12 @@ class ScreenshotView: NSView {
     }
     
     func setupTool() {
-        addSubview(toolBox)
+        toolBox = ScreenshotToolBox()
+        addSubview(toolBox!)
         hideToolkit()
         
-        addSubview(tipView)
+        tipView = ScreenshotLabelView()
+        addSubview(tipView!)
         hideTip()
     }
     
@@ -57,17 +56,17 @@ class ScreenshotView: NSView {
         let margin: CGFloat = 10
         let toolWidth: CGFloat = (35 * 7) + (margin * 2) - (35 - 28)
         x = max(toolWidth, x)
-        if toolBox.frame != CGRect(x: x - toolWidth, y: y, width: toolWidth, height: 26) {
-            toolBox.frame = CGRect(x: x - toolWidth, y: y, width: toolWidth, height: 26)
+        if toolBox?.frame != CGRect(x: x - toolWidth, y: y, width: toolWidth, height: 26) {
+            toolBox?.frame = CGRect(x: x - toolWidth, y: y, width: toolWidth, height: 26)
         }
         
-        if toolBox.isHidden {
-            toolBox.isHidden = false
+        if toolBox?.isHidden == true {
+            toolBox?.isHidden = false
         }
     }
     
     func hideToolkit() {
-        toolBox.isHidden = true
+        toolBox?.isHidden = true
     }
     
     func showTip() {
@@ -92,13 +91,13 @@ class ScreenshotView: NSView {
         
         let rect = CGRect(origin: mouseLocation, size: CGSize(width: 100, height: 25))
         let imageRect = drawingRect.intersection(bounds)
-        tipView.text = String(format: "%dX%d", Int(imageRect.size.width), Int(imageRect.size.height))
-        tipView.frame = window.convertFromScreen(rect)
-        tipView.isHidden = false
+        tipView?.text = String(format: "%dX%d", Int(imageRect.size.width), Int(imageRect.size.height))
+        tipView?.frame = window.convertFromScreen(rect)
+        tipView?.isHidden = false
     }
     
     func hideTip() {
-        tipView.isHidden = true
+        tipView?.isHidden = true
     }
     
     override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
@@ -136,10 +135,10 @@ class ScreenshotView: NSView {
         default:
             break
         }
-        return CGRect(x: x - Self.pointLen, y: y - Self.pointLen, width: Self.pointLen * 2, height: Self.pointLen * 2)
+        return CGRect(x: x - Self.dragPointLen, y: y - Self.dragPointLen, width: Self.dragPointLen * 2, height: Self.dragPointLen * 2)
     }
     override func draw(_ dirtyRect: NSRect) {
-//        NSDisableScreenUpdates()
+        NSDisableScreenUpdates()
         super.draw(dirtyRect)
         if let image = image {
             let imageRect = drawingRect.intersection(bounds)
@@ -153,7 +152,7 @@ class ScreenshotView: NSView {
             
             if ScreenshotManager.shared.captureState == .adjust {
                 NSColor.white.set()
-                for i in 0 ..< Self.pointNum {
+                for i in 0 ..< Self.dragPointNum {
                     let adjustPath = NSBezierPath()
                     adjustPath.removeAllPoints()
                     adjustPath.appendOval(in: pointRect(index: i, in: imageRect))
@@ -161,8 +160,9 @@ class ScreenshotView: NSView {
                 }
             }
         }
-        
-        showToolkit()
-//        NSEnableScreenUpdates()
+        if toolBox != nil && toolBox?.isHidden == false {
+            showToolkit()
+        }
+        NSEnableScreenUpdates()
     }
 }
