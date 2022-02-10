@@ -38,7 +38,8 @@ class ScreenshotManager {
     }
     
     func start() {
-        guard !isWorking, let windows = CGWindowListCopyWindowInfo(.optionOnScreenOnly, 0) as? [[String: Any]] else { return }
+        guard !isWorking else { return }
+        guard let windows = CGWindowListCopyWindowInfo(.optionOnScreenOnly, 0) as? [[String: Any]] else { return }
         isWorking = true
         arrayRect.removeAll()
         arrayRect.append(contentsOf: windows)
@@ -77,5 +78,4 @@ class ScreenshotManager {
         }
         windowControllerArray.removeAll()
     }
-    
 }
