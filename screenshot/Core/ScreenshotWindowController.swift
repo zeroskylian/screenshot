@@ -1,4 +1,4 @@
-//
+// swiftlint:disable type_body_length
 //  ScreenshotWindowController.swift
 //  screenshot
 //
@@ -436,18 +436,19 @@ class ScreenshotWindowController: NSWindowController {
     }
     
     private func onCaptureComplete() {
-        guard let originImage = originImage, let window = window else {
+        guard let originImage = originImage, let window = window, let snipView = snipView else {
             return
         }
         originImage.lockFocus()
         var rect = captureWindowRect.intersection(window.frame)
         rect = window.convertFromScreen(rect)
         rect = rect.integral
-        snipView?.pathView?.drawFinishComment(in: rect)
-        let bits = NSBitmapImageRep(focusedViewRect: rect)
+        snipView.pathView?.drawFinishComment(in: rect)
+        guard let bits = snipView.bitmapImageRepForCachingDisplay(in: rect) else { return }
+        snipView.cacheDisplay(in: rect, to: bits)
         originImage.unlockFocus()
         let imageProps: [NSBitmapImageRep.PropertyKey: Any] = [NSBitmapImageRep.PropertyKey.compressionFactor: 1]
-        guard let imageData = bits?.representation(using: .jpeg, properties: imageProps) else {
+        guard let imageData = bits.representation(using: .jpeg, properties: imageProps) else {
             window.orderOut(nil)
             return
         }

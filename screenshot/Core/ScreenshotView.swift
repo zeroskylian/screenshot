@@ -138,7 +138,6 @@ class ScreenshotView: NSView {
         return CGRect(x: x - Self.dragPointLen, y: y - Self.dragPointLen, width: Self.dragPointLen * 2, height: Self.dragPointLen * 2)
     }
     override func draw(_ dirtyRect: NSRect) {
-        NSDisableScreenUpdates()
         super.draw(dirtyRect)
         if let image = image {
             let imageRect = drawingRect.intersection(bounds)
@@ -162,6 +161,5 @@ class ScreenshotView: NSView {
         if toolBox != nil && toolBox?.isHidden == false {
             showToolkit()
         }
-        NSEnableScreenUpdates()
     }
 }
