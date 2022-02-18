@@ -74,7 +74,7 @@ class ScreenshotWindowController: NSWindowController {
                 let rect = try ScreenshotUtil.cgWindowRectToScreenRect(windowRect: cgrect.unwrap())
                 let layer = (dir[kCGWindowLayer as String] as? Int) ?? 0
                 guard layer >= 0 else { continue }
-                if ScreenshotUtil.point(point: mouseLocation, inRect: rect) {
+                if rect.contains(mouseLocation) {
                     if layer == 0 {
                         self.captureWindowRect = rect
                         break
@@ -92,7 +92,7 @@ class ScreenshotWindowController: NSWindowController {
             }
         }
         
-        if ScreenshotUtil.point(point: mouseLocation, inRect: screenFrame) {
+        if screenFrame.contains(mouseLocation) {
             redrawView(image: originImage)
         } else {
             redrawView(image: nil)
@@ -241,7 +241,7 @@ class ScreenshotWindowController: NSWindowController {
     @objc private func onNotifyMouseChange(noti: Notification) {
         if let manager = noti.userInfo?["content"] as? ScreenshotManager, manager === self { return }
         guard let window = window, let screen = window.screen else { return }
-        if ScreenshotManager.shared.captureState == .highlight && window.isVisible && ScreenshotUtil.point(point: NSEvent.mouseLocation, inRect: screen.frame) {
+        if ScreenshotManager.shared.captureState == .highlight && window.isVisible && screen.frame.contains(NSEvent.mouseLocation) {
             DispatchQueue.main.async { [weak self] in
                 guard let `self` = self else { return }
                 self.showWindow(nil)
@@ -444,8 +444,9 @@ class ScreenshotWindowController: NSWindowController {
         rect = window.convertFromScreen(rect)
         rect = rect.integral
         snipView.pathView?.drawFinishComment(in: rect)
-        guard let bits = snipView.bitmapImageRepForCachingDisplay(in: rect) else { return }
-        snipView.cacheDisplay(in: rect, to: bits)
+//        guard let bits = snipView.bitmapImageRepForCachingDisplay(in: rect) else { return }
+//        snipView.cacheDisplay(in: rect, to: bits)
+        guard let bits = NSBitmapImageRep(focusedViewRect: rect) else { return }
         originImage.unlockFocus()
         let imageProps: [NSBitmapImageRep.PropertyKey: Any] = [NSBitmapImageRep.PropertyKey.compressionFactor: 1]
         guard let imageData = bits.representation(using: .jpeg, properties: imageProps) else {

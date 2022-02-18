@@ -18,11 +18,11 @@ class ScreenshotManager {
     
     var captureState: CaptureState = .idle
     
-    var configure: DrawConfigure = .init()
-    
     var draw: Draw = .rect
     
     var isWorking: Bool = false
+    
+    var configure: DrawConfigure = .init()
     
     let id: String
     

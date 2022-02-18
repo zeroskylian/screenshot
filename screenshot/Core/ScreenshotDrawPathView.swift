@@ -25,7 +25,7 @@ class ScreenshotDrawPathView: NSView {
         super.draw(dirtyRect)
         if ScreenshotManager.shared.captureState == .edit {
             drawComment(in: bounds)
-            guard let currentInfo = self.currentInfo else {  return }
+            guard let currentInfo = self.currentInfo else { return }
             drawShape(info: currentInfo, inBackground: false)
         }
     }

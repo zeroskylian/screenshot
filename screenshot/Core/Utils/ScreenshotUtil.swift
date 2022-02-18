@@ -8,10 +8,7 @@
 import AppKit
 
 struct ScreenshotUtil {
-    static func point(point: CGPoint, inRect rect: CGRect) -> Bool {
-        return rect.contains(point)
-    }
-    
+
     static func distance(from p1: CGPoint, to p2: CGPoint) -> CGFloat {
         return pow(p1.x - p2.x, 2) + pow(p1.y - p2.y, 2)
     }
@@ -35,7 +32,6 @@ struct ScreenshotUtil {
     
     static func rectToZero(rect: CGRect) -> CGRect {
         return rect.offsetBy(dx: -rect.origin.x, dy: -rect.origin.y)
-//        return NSOffsetRect(rect, -rect.origin.x, -rect.origin.y)
     }
     
     static func cgWindowRectToScreenRect(windowRect: CGRect) -> CGRect {

@@ -27,11 +27,13 @@ extension ScreenshotManager {
         var textColor: NSColor = .red
         
         var font: NSFont = .boldSystemFont(ofSize: 12)
+        
+        var borderLineWidth: CGFloat = 2
+        
+        var borderLineColor: NSColor = NSColor(hex: 0x1191FE)
     }
     
     struct Constant {
-        static let borderLineWidth: Double = 2
-        static let borderLineColor: Int = 0x1191FE
         static let keyEscCode: Int = 53
     }
     

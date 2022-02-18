@@ -15,19 +15,21 @@ class ScreenshotToolBox: NSView {
     
     var actionClick: ((Action) -> Void)?
     
+    override var frame: NSRect {
+        didSet {
+            let step: CGFloat = 35
+            let margin: CGFloat = 10
+            for (index, btn) in buttons.enumerated() {
+                btn.frame = CGRect(x: margin + step * CGFloat(index), y: 0, width: 28, height: 26)
+            }
+        }
+    }
+    
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        
-        let stackView = NSStackView(views: buttons)
-        stackView.distribution = .fillEqually
-        stackView.edgeInsets = NSEdgeInsets(top: 0, left: 7, bottom: 0, right: 7)
-        stackView.spacing = 7
-        addSubview(stackView)
-        
-        stackView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        stackView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        buttons.forEach { btn in
+            addSubview(btn)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -62,9 +64,7 @@ class ScreenshotToolBox: NSView {
         actionClick?(action)
     }
     
-    override func mouseDown(with event: NSEvent) {
-        
-    }
+    override func mouseDown(with event: NSEvent) {}
 }
 
 extension ScreenshotToolBox {

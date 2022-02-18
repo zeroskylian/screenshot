@@ -138,13 +138,14 @@ class ScreenshotView: NSView {
         return CGRect(x: x - Self.dragPointLen, y: y - Self.dragPointLen, width: Self.dragPointLen * 2, height: Self.dragPointLen * 2)
     }
     override func draw(_ dirtyRect: NSRect) {
+//        NSDisableScreenUpdates()
         super.draw(dirtyRect)
         if let image = image {
             let imageRect = drawingRect.intersection(bounds)
             image.draw(in: imageRect, from: imageRect, operation: .sourceOver, fraction: 1)
-            NSColor(hex: ScreenshotManager.Constant.borderLineColor).set()
+            ScreenshotManager.shared.configure.borderLineColor.set()
             let rectPath = NSBezierPath()
-            rectPath.lineWidth = ScreenshotManager.Constant.borderLineWidth
+            rectPath.lineWidth = ScreenshotManager.shared.configure.borderLineWidth
             rectPath.removeAllPoints()
             rectPath.appendRect(imageRect)
             rectPath.stroke()
@@ -161,5 +162,6 @@ class ScreenshotView: NSView {
         if toolBox != nil && toolBox?.isHidden == false {
             showToolkit()
         }
+//        NSEnableScreenUpdates()
     }
 }
